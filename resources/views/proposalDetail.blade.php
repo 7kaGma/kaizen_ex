@@ -3,8 +3,8 @@
 <x-app-layout>
     <x-content-frame>
     <div>
-        {{$post->user_id}}
-        {{$like}}
+        <!-- {{$post->user_id}}
+        {{$like}} -->
         <div class="flex justify-between">
             <div class="text-xl">提案書詳細</div>
         </div>
