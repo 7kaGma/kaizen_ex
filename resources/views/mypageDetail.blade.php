@@ -1,13 +1,10 @@
 <!-- resources/views/mypageDetail.blade.php -->
 
 <x-app-layout>
-<script>
-    
-</script>
     <x-content-frame>
         <div>
             <div class="flex justify-between">
-                <div class="text-xl">提案書詳細 <span class="text-sm text-gray-600">検討中/差戻し時のみ編集可能</span>   </div>     
+                <div class="text-xl">提案書詳細 <span class="text-sm text-gray-600">差戻し時のみ編集可能</span>   </div>     
             </div>
             {{-- 提案書全体 --}}
             <div class="flex w-full h-scleen">
@@ -15,10 +12,10 @@
                 {{-- 左側 提案書No、提案書名、現状、提案内容、メリット 予算  --}}
                 <div class="bg-blue-200 w-1/2 rounded-l-xl h-scleen">
                     <div class="mx-2">
-                        <h2 class="font-bold">提案番号</h2>
+                        <h2 class="font-bold">No</h2>
                         <div class=" px-1 bg-blue-300 rounded-md text-black mb-2 w-full">{!! $post->idKP !!}</div>
 
-                        <h2 class="font-bold">提案書名</h2>
+                        <h2 class="font-bold">タイトル</h2>
                         <div class="px-1 bg-blue-300 rounded-md text-black mb-2 w-full">{!! $post->title !!}</div>
                         <form id="edit" action="{{ route('mypageDetail.submit', ['idKP' => $post->idKP]) }}" method="post">
                             @csrf
@@ -84,7 +81,7 @@
                                 <div class="text-center w-3/5 px-1 py-5 bg-blue-300 rounded-md text-black mb-2 w-full">{!! $post->approvalStage !!}</div>
                             </div>
                             <div class="w-1/3">
-                                <h2 class="font-bold text-red-500">いいね数</h2>
+                                <h2 class="font-bold text-red-500">❤️</h2>
                                 <div class="flex justify-end">
                                     <div class="text-center w-3/5 px-1 py-5 bg-blue-300 rounded-md text-black mb-2 w-full">{!! $post->goodCounts !!}</div>
                                 </div>
@@ -105,4 +102,5 @@
             <button id="update" class="btn-primary" {{ $readonly ? 'disabled' : '' }}>Update!</button>
         </div>
     </x-content-frame>
+    @vite(['resources/js/detailpage.js'])
 </x-app-layout>

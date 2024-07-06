@@ -1,10 +1,10 @@
 <x-app-layout>
     <body>
         {{-- <h1>{{config('app.name')}}</h1> --}}
-        <div class="text-red-400 text-end">{{Auth::user()->department}}部署、{{Auth::user()->name}}さんの提案です（usersテーブルから流用の確認用,データの受け渡しが確認できたら消す）</div>
+        <div class="text-red-400 text-end"></div>
         
         <x-content-frame>
-        <h1 class="text-gray-600 m-2">課題・導入したい事例を記入して、最後に『作成してください』添えると⭕️。</h1>
+        <h1 class="text-gray-600 m-2">課題・導入したい事例を記入して、最後に『作成してください』を添えるとAIも嬉しいかも。</h1>
         <form action="{{route('entry')}}" method="post">
             @csrf
             <textarea class="w-1/2 mx-2 rounded-md" name="toGeminiText" >@isset($result['task']){{$result['task']}}@endisset </textarea>
@@ -21,7 +21,7 @@
             <div class="bg-blue-200 w-1/2 rounded-l-xl">
                 <h1 class="text-2xl mx-2">AIの提案内容</h1>
                 <div class="mx-2">
-                    <h2 class="font-bold">提案書名</h2>
+                    <h2 class="font-bold">タイトル</h2>
                     <div class="bg-blue-300 rounded-md text-black mb-2">{!! $result['title_html'] !!}</div>
                     
                     <h2 class="font-bold">現状とその問題点</h2>
@@ -42,7 +42,7 @@
                 <form  method="POST" action="{{ route('kaizenProposals.store') }}" class="mx-2">
                     <h1 class="text-2xl">最終提案書の作成</h1>
                     @csrf
-                    <h2 class="font-bold">提案書名</h2>
+                    <h2 class="font-bold">タイトル</h2>
                     <input class="bg-slate-300 mb-2 px-1 rounded-md w-full" type="text" name="title" value="{{ $result['title']}}" required></input>
                     <x-input-error :messages="$errors->get('title')" class="mt-2" />
 

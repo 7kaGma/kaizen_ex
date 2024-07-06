@@ -13,10 +13,27 @@ class KaizenProposalController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $posts = kaizenProposal::orderBy('idKP','desc')->paginate(5);
+        // 検索条件用にモディファイ
+        $query = kaizenProposal::query();
+
+        if ($request->filled('search')) {
+            $search = $request->input('search');
+            $query->where(function ($q) use ($search) {
+                $q->where('title', 'like', '%' . $search . '%')
+                  ->orWhere('name', 'like', '%' . $search . '%')
+                  ->orWhere('approvalStage', 'like', '%' . $search . '%');
+            });
+        }
+        // 検索条件を加えた
+        $posts = $query->orderBy('idKP', 'desc')->paginate(5)->withQueryString();
+        // 下記は通常の検索用
+        // $posts = kaizenProposal::orderBy('idKP','desc')->paginate(5);
         return view('list', compact('posts'));
+        
+
+        
     }
 
     public function detail($idKP)

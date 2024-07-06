@@ -3,8 +3,6 @@
 <x-app-layout>
     <x-content-frame>
     <div>
-        <!-- {{$post->user_id}}
-        {{$like}} -->
         <div class="flex justify-between">
             <div class="text-xl">提案書詳細</div>
         </div>
@@ -14,10 +12,10 @@
             {{-- 左側 提案書No、提案書名、現状、提案内容、メリット 予算  --}}
             <div class="bg-blue-200 w-1/2 rounded-l-xl h-scleen">
                 <div class="mx-2">
-                    <h2 class="font-bold">提案番号</h2>
+                    <h2 class="font-bold">No</h2>
                     <div class=" px-1 bg-blue-300 rounded-md text-black mb-2 w-full">{!! $post->idKP !!}</div>
 
-                    <h2 class="font-bold">提案書名</h2>
+                    <h2 class="font-bold">タイトル</h2>
                     <div class="px-1 bg-blue-300 rounded-md text-black mb-2 w-full">{!! $post->title !!}</div>
 
                     <h2 class="font-bold">現状とその問題点</h2>
@@ -43,7 +41,7 @@
                             <div class="text-center w-5/6 px-1 py-1 bg-blue-300 rounded-md text-black mb-2 w-full">{!! $post->name !!}</div>
                         </div>
                         <div class="w-1/2">
-                            <h2 class="font-bold">提案日</h2>
+                            <h2 class="font-bold">提案日時</h2>
                             <div class="text-center w-5/6 px-1 py-1 bg-blue-300 rounded-md text-black mb-2 w-full">{!! $post->updated_at->format('Y-m-d H:i') !!}</div>
                         </div>
                     </div>
@@ -77,7 +75,7 @@
                             <div class="text-center w-3/5 px-1 py-5 bg-blue-300 rounded-md text-black mb-2 w-full">{!! $post->approvalStage !!}</div>
                         </div>
                         <div class="w-1/3">
-                                <h2 class="font-bold text-red-500">いいね数</h2>
+                                <h2 class="font-bold text-red-500">❤️</h2>
                             <div class="flex justify-end">
                                 <div class="text-center w-3/5 px-1 py-5 bg-pink-300 rounded-md text-black mb-2 w-full">{!! $post->goodCounts !!}</div>
                             </div>
