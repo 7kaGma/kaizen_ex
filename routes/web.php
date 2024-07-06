@@ -34,7 +34,7 @@ Route::post('/kaizen-proposals', [KaizenProposalController::class, 'store'])->na
 
 // Gemini:追加
 Route::get('/create', [GeminiController::class, 'index'])->name('index');
-Route::post('/', [GeminiController::class, 'entry'])->name('entry');
+Route::post('/create', [GeminiController::class, 'entry'])->name('entry');
 
 //本：ダッシュボード表示(books.blade.php)
 Route::get('/', [BookController::class,'index'])->middleware(['auth'])->name('book_index');
