@@ -7,7 +7,7 @@
         <h1 class="text-gray-600 m-2">課題・導入したい事例を記入して、最後に『作成してください』を添えるとAIも嬉しいかも。</h1>
         <form action="{{route('entry')}}" method="post">
             @csrf
-            <textarea class="w-1/2 mx-2 rounded-md" name="toGeminiText" >@isset($result['task']){{$result['task']}}@endisset </textarea>
+            <textarea class="w-1/2 mx-2 rounded-md" name="toGeminiText" required>@isset($result['task']){{$result['task']}}@endisset</textarea>
             <x-primary-button>AIに作成依頼</x-prmary-button>
         </form>
         </x-content-frame>

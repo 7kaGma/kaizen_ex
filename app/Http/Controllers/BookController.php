@@ -26,14 +26,30 @@ class BookController extends Controller
 
 
     // 提案書を作成して上位５ファイルを取得する
-    public function index()
+    public function index(Request $request)
     {
         $posts = kaizenProposal::orderBy('idKP', 'desc')->take(5)->get();
         // miniMypage用
         $mines = kaizenProposal::where('user_id', Auth::id())->orderBy('idKP', 'desc')->limit(5)->get();
         // approvalPage用
         $currentUserDepartment = Auth::user()->department;
-        $approvals = kaizenProposal::where('department', $currentUserDepartment)
+        // 検索条件に合致する提案書を取得
+        $approvals = kaizenProposal::where('department', $currentUserDepartment);
+        if ($request->filled('searchWord')) {
+            $searchWord = $request->input('searchWord');
+
+            $keywords = preg_split('/[ \x{3000}]+/u', $searchWord, -1, PREG_SPLIT_NO_EMPTY);
+
+            $approvals->where(function ($q) use ($keywords) {
+                foreach ($keywords as $keyword) {
+                    $q->where(function ($subQuery) use ($keyword) {
+                        $subQuery->where('title', 'like', "%{$keyword}%")
+                            ->orWhere('name', 'like', "%{$keyword}%");
+                    });
+                }
+            });
+        }
+        $approvals = $approvals
                                     ->where(function ($query) {
                                         $query->where('approvalStage', '検討中')
                                               ->orWhere('approvalStage', '再提出');

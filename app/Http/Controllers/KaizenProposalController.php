@@ -20,10 +20,16 @@ class KaizenProposalController extends Controller
 
         if ($request->filled('search')) {
             $search = $request->input('search');
-            $query->where(function ($q) use ($search) {
-                $q->where('title', 'like', '%' . $search . '%')
-                  ->orWhere('name', 'like', '%' . $search . '%')
-                  ->orWhere('approvalStage', 'like', '%' . $search . '%');
+            $keywords = preg_split('/[ \x{3000}]+/u', $search, -1, PREG_SPLIT_NO_EMPTY);
+
+            $query->where(function ($q) use ($keywords) {
+                foreach ($keywords as $keyword) {
+                    $q->where(function ($subQuery) use ($keyword) {
+                        $subQuery->where('title', 'like', '%' . $keyword . '%')
+                            ->orWhere('name', 'like', '%' . $keyword . '%')
+                            ->orWhere('approvalStage', 'like', '%' . $keyword . '%');
+                    });
+                }
             });
         }
         // 検索条件を加えた
