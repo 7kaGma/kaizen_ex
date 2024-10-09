@@ -6,8 +6,13 @@
         <div class="text-xl">投稿一覧</div>
         <!-- 検索フォームの追加 -->
         <form method="GET" action="{{ route('proposal.list') }}" class="mb-4">
-            <input type="text" name="search" placeholder="提案者・タイトル・承認段階に対して検索可能（一語のみ）" value="{{ request('search') }}" class="px-4 py-2 border rounded w-1/2" />
-            <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded mt-2">検索</button>
+            <input type="text" name="search" placeholder="提案者・タイトル・承認段階に対して検索可能 (スペースで複数ワード検索可能)" value="{{ request('search') }}" class="px-4 py-2 border rounded w-1/2" />
+            <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded mt-2 active:scale-95 active:shadow-lg transition-transform duration-100">検索</button>
+            @if(request('search'))
+            <a href="{{ route('proposal.list') }}" class="rounded bg-gray-500 py-2 px-3 mt-2 text-white hover:bg-gray-600 active:scale-95 active:shadow-lg transition-transform duration-100">
+                絞込解除
+            </a>
+          @endif
         </form>
 
 

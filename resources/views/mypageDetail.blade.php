@@ -99,8 +99,10 @@
         </div>
         <div class="flex justify-center item-center py-8 gap-12">
             <x-cancel-button  :href="route('mypage')" :active="request()->routeIs('mypage')">戻る</x-cancel-button>
-            <button id="update" class="btn-primary" {{ $readonly ? 'disabled' : '' }}>Update!</button>
+            <button id="update" type="button" class="btn-primary" {{ $readonly ? 'disabled' : '' }}>Update!</button>
         </div>
+
+
     </x-content-frame>
     @vite(['resources/js/detailpage.js'])
 </x-app-layout>
