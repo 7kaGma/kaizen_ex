@@ -102,7 +102,9 @@
             </tbody>
           </table> <!-- テーブルの終了タグ -->
           <div class="mt-4 flex justify-center">
-            {{ $approvals->links()}}
+            {{-- {{ $approvals->links()}} --}}
+            {{ $approvals->appends(request()->query())->links()}}
+
           </div>
           @else
           <p>No proposals found.</p>
