@@ -8,7 +8,7 @@
         <form action="{{route('entry')}}" method="post">
             @csrf
             <textarea class="w-1/2 mx-2 rounded-md" name="toGeminiText" required>@isset($result['task']){{$result['task']}}@endisset</textarea>
-            <x-primary-button>AIに作成依頼</x-prmary-button>
+            <x-primary-button id="requestToAi" type="submit">AIに作成依頼</x-prmary-button>
         </form>
         </x-content-frame>
         
@@ -62,17 +62,6 @@
                     <input class="bg-slate-300 mb-2 px-1 rounded-md w-full" type="text" name="budget" value="{{ $result['budget']}}" required></input>
                     <x-input-error :messages="$errors->get('budget')" class="mt-2" />
 
-
-                    {{-- 以下はデータ登録時にKaizenProposalController.phpで対応しているため必要なし --}}
-                    {{-- <input type="hidden" name="user_id" value="{{Auth::user()->id}}">  --}}
-                    {{-- IDの登録 --}}
-                    {{-- <input type="hidden" name="name" value="{{Auth::user()->name}}">  --}}
-                    {{-- IDの登録 --}}
-                    {{-- <input type="hidden" name="position" value="{{Auth::user()->position}}">  --}}
-                    {{-- 役職の登録 --}}
-                    {{-- <input type="hidden" name="department" value="{{Auth::user()->department}}">  --}}
-                    {{-- 部署の登録 --}}
-                    {{-- <input type="hidden" name="team" value="{{Auth::user()->team}}">  --}}
                     {{-- teamの登録 --}}
                     <input type="hidden" name="appovalStage" value="検討中"> 
                     {{-- 承認段階の登録 検討中、差戻し、採用、不採用、再提出 --}}
@@ -83,5 +72,13 @@
         </div>
 
         @endisset
+
+
+        <!-- 操作を無効化するオーバーレイ -->
+        
+
+
     </body>
+    @vite(['resources/js/createpage.js'])
+ 
     </x-app-layout>

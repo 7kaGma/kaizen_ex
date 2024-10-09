@@ -9,6 +9,7 @@ export default defineConfig({
                 'resources/js/app.js',
                 'resources/js/main.js',
                 'resources/js/detailpage.js',
+                'resources/js/createpage.js',
             ],
             refresh: true,
         }),

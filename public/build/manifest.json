@@ -10,8 +10,14 @@
     "src": "resources/js/app.js",
     "isEntry": true
   },
+  "resources/js/createpage.js": {
+    "file": "assets/createpage-D-0uBPrR.js",
+    "name": "createpage",
+    "src": "resources/js/createpage.js",
+    "isEntry": true
+  },
   "resources/js/detailpage.js": {
-    "file": "assets/detailpage-8iWoqsZr.js",
+    "file": "assets/detailpage-4KFVo1cq.js",
     "name": "detailpage",
     "src": "resources/js/detailpage.js",
     "isEntry": true

@@ -95,13 +95,20 @@ class KaizenProposalController extends Controller
             'budget' => 'required|string',
         ]);
 
+        // タイトル、現状、提案、効果、予算の入力内容に対して、**が含まれていた場合、**を削除
+        $cleanTitle = str_replace('**','',$request->input('title')); 
+        $cleanCurrentSituation = str_replace('**','',$request->input('currentSituation'));
+        $cleanProposal = str_replace('**','',$request->input('proposal'));
+        $cleanBenefit = str_replace('**','',$request->input('benefit'));
+        $cleanBudget = str_replace('**','',$request->input('budget'));
+
         // データを保存
         KaizenProposal::create([
-            'title' => $request->input('title'),
-            'currentSituation' => $request->input('currentSituation'),
-            'proposal' => $request->input('proposal'),
-            'benefit' => $request->input('benefit'),
-            'budget' => $request->input('budget'),
+            'title' => $cleanTitle,
+            'currentSituation' => $cleanCurrentSituation,
+            'proposal' => $cleanProposal,
+            'benefit' => $cleanBenefit,
+            'budget' => $cleanBudget,
             'user_id' => Auth::user()->id,
             'name' => Auth::user()->name,
             'position' => Auth::user()->position,
