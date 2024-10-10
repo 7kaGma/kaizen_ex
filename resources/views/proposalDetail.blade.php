@@ -123,17 +123,17 @@
             <form method="POST" action="{{ route('like.store') }}">
                 @csrf
                 <input type="hidden" name="kp_id" value="{{$post->idKP}}">
-                <button type='submit' class='btn-secondary'>
-                    Like
-                </button>
+                <x-like-button>
+                    {!! $post->goodCounts !!}
+                </x-like-button>
             </form>    
         @else
             <form method="POST" action="{{ route('like.destroy',$like)}}">
                 @csrf
                 @method('delete')
-                <button type='submit' class='pushed'>
-                    Dislike
-                </button>
+                <x-like-button coreClass="bg-red-500">
+                    {!! $post->goodCounts !!}
+                </x-like-button>
             </form>  
         @endif
     @endif
