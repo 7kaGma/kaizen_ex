@@ -1,0 +1,1 @@
+document.addEventListener("DOMContentLoaded",()=>{const e=document.getElementById("update");e&&e.addEventListener("click",()=>{if(confirm("内容に間違いはありませんか?"))document.getElementById("edit").submit();else return!1})});

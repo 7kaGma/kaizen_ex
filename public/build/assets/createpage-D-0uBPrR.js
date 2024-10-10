@@ -1,0 +1,1 @@
+document.getElementById("requestToAi").addEventListener("click",function(){event.preventDefault(),this.form.checkValidity()?(this.disabled=!0,document.querySelectorAll("a, button").forEach(function(t){t.setAttribute("disabled","true"),t.style.pointerEvents="none"}),this.form.submit()):this.form.reportValidity()});
