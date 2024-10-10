@@ -1,7 +1,7 @@
 /*----------
 ダッシュボードの設定
 ----------*/
-import Chart from 'chart.js/auto';
+import Chart, { Ticks } from 'chart.js/auto';
 
 document.addEventListener('DOMContentLoaded', function () {
   var tableBody = document.getElementById('latestProposalsTable').querySelector('tbody');
@@ -44,16 +44,27 @@ let barCtx = document.getElementById('mvp_chart');
         data: [mvp[0].postCount,mvp[1].postCount,mvp[2].postCount,mvp[3].postCount,mvp[4].postCount],
         label: "件数",
         backgroundColor: [  // それぞれの棒の色を設定(dataの数だけ)
-         '#ff0000',
-          '#0000ff',
-          '#ffff00',
-          '#008000',
-          '#800080',
-          '#ffa500',
+         '#8BD1FF',
+          '#8BD1FF',
+          '#8BD1FF',
+          '#8BD1FF',
+          '#8BD1FF',
+          '#8BD1FF',
         ],
         borderWidth: 1,
       }]
     },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks:{
+            min: 0,
+            stepSize: 1
+          }
+        }
+      }
+    }
   };
 let barChart = new Chart(barCtx, barConfig);
   
@@ -61,6 +72,18 @@ let barChart = new Chart(barCtx, barConfig);
 console.log(dpt);
 console.log(dpt[0].postCount);
 let deptCtx = document.getElementById('department_chart');
+let labels =  ['生産技術部', '研究開発部', '経理部', '営業部'];
+let backgroundColors =[];
+console.log(belong);
+
+for(let i = 0; i<labels.length;i++){
+  if(belong != labels[i]){
+    backgroundColors[i] = "#8BD1FF";
+  }else{
+    backgroundColors[i] = "#0099FF";
+  }
+}
+
 let deptConfig = {
   type: 'bar',
   data: {
@@ -68,19 +91,18 @@ let deptConfig = {
     datasets: [{
       data: [dpt[0].proposalCount, dpt[1].proposalCount, dpt[2].proposalCount, dpt[3].proposalCount ],
       label: "件数",
-      backgroundColor: [
-        '#ff0000',
-        '#0000ff',
-        '#ffff00',
-        '#008000'
-      ],
+      backgroundColor: backgroundColors,
       borderWidth: 1,
     }]
   },
   options: {
     scales: {
       y: {
-        beginAtZero: true
+        beginAtZero: true,
+        ticks:{
+          min: 0,
+          stepSize: 1
+        }
       }
     }
   }

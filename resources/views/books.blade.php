@@ -216,6 +216,7 @@
     const chartData = @json($chartData);
     const mvp = @json($mvp);
     const dpt = @json($dpt);
+    const belong = @json(Auth::user()->department);
   </script>
   <!-- main.js の読み込み -->
   @vite(['resources/js/main.js'])
