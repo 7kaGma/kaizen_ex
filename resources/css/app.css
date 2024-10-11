@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 @layer components {
+  /* buttonに関するスタイル */
   .btn-primary {
   @apply py-3 px-4 w-40 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border
   border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none;
@@ -22,8 +23,33 @@
   @apply bg-orange-400 py-3 px-4 w-40 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border
   border-gray-600 text-gray-600 hover:border-gray-400 hover:text-gray-400 disabled:opacity-50 disabled:pointer-events-none;
   }
-
+  /* ハートマークに関するスタイル */
+  .core {
+    @apply w-[14px] h-[14px] relative bg-gray-300 rotate-[-45deg] translate-y-[5px];
+  }
+  .core::before {
+    content: "";
+    position: absolute;
+    top: -7px;
+    left: 0px;
+    width: 14px;
+    height: 14px;
+    background-color: inherit;
+    border-radius: 50% 50% 0 0;
+  }
+  .core::after {
+    content: "";
+    position: absolute;
+    left: 7px;
+    width: 14px;
+    height: 14px;
+    background-color: inherit;
+    transform: rotate(90deg);
+    border-radius: 50% 50% 0 0;
+  }
 }
+
+
   
   @layer screen{
   .base-bg{
