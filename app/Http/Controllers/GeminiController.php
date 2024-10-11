@@ -55,7 +55,7 @@ class GeminiController extends Controller
             $benefit = '';
             $budget = '';
             $currentSituation = '';
-
+            // 正規表現で前方と後方一致する箇所の中身を取得させている
             if (preg_match('/提案書名:\s*(.*?)\s*現状:/s', $response, $matches)) {
                 $title = $matches[1];
             }
