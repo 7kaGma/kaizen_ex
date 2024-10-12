@@ -6,11 +6,9 @@
                     <!-- 検索フォームの追加 -->
         <form method="GET" action="{{ route('mypage') }}" class="mb-4">
             <input type="text" name="search" placeholder="タイトルに対して検索 (複数ワード検索可能)" value="{{ request('search') }}" class="px-4 py-2 border rounded w-1/2" />
-            <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded mt-2 active:scale-95 active:shadow-lg transition-transform duration-100">検索</button>
+            <x-query-button/>
             @if(request('search'))
-                <a href="{{ route('mypage') }}" class="rounded bg-gray-500 py-2 px-3 mt-2 text-white hover:bg-gray-600 active:scale-95 active:shadow-lg transition-transform duration-100">
-                    絞込解除
-                </a>
+              <x-queryCancel-button href="{{ route('mypage') }}"/>
             @endif
         </form>
         @if($posts->count())

@@ -1,0 +1,1 @@
+<button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded mt-2 active:scale-95 active:shadow-lg transition-transform duration-100">検索</button>

@@ -13,14 +13,14 @@
     <!-- 全体の見出しと説明文 [END] -->
 
     <!-- 自分の投稿一覧 -->
-    <x-content-frame class="mb-8 bg-blue-600">
+    <x-content-frame class="mb-8">
         @php
         $position = Auth::user()->position;
         @endphp
 
         @if ($position === '一般社員' || $position === '係長')
         <!-- usersテーブルのpositionが係長と一般社員の時の表示-->
-        <div class="flex flex-col rounded-lg border p-4 md:p-6 bg-white text-gray-900 w-full">
+        <div class="flex flex-col  w-full">
           <h3 class="mb-2 text-lg font-semibold md:text-xl">{{Auth::user()->name}}さんの投稿一覧</h3>
           <p class="mb-4 text-gray-500"></p>
           @if($mines->count())
@@ -60,13 +60,13 @@
         </div>
         @elseif ($position === '課長' || $position === '部長')
         <!-- usersテーブルのpositionが課長と部長の時の表示-->
-        <div class="flex flex-col rounded-lg border p-4 md:p-6 bg-white text-gray-900 w-full">
+        <div class="flex flex-col w-full">
           <h3 class="mb-2 text-lg font-semibold md:text-xl">承認案件の一覧</h3>
           <p class="mb-4 text-gray-500">あなたの部下が承認を待っています</p>
                   <!-- 検索フォームの追加 -->
         <form method="GET" action="{{ route('book_index') }}" class="mb-4">
           <input type="text" name="searchWord" placeholder="提案者・タイトルに対して検索可能 (スペースで複数ワード検索可能)" value="{{ request('searchWord') }}" class="px-4 py-2 border rounded w-1/2" />
-          <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded mt-2 active:scale-95 active:shadow-lg transition-transform duration-100">検索</button>
+          <x-query-button/>
           @if(request('searchWord'))
             <a href="{{ route('book_index') }}" class="rounded bg-gray-500 py-2 px-3 mt-2 text-white hover:bg-gray-600 active:scale-95 active:shadow-lg transition-transform duration-100">
                 絞込解除
